@@ -64,20 +64,21 @@ ChapterAI 是一个epub文件分章节分析工具，它能够帮助用户快速
 在`api/.env`文件中，您可以配置以下选项：
 
 ```ini
-# API提供商选择 (deepseek/siliconflow)
-API_PROVIDER=deepseek
+# API 通用配置
+API_BASE_URL=https://your-api-base-url.com/
+API_KEY=your-api-key-here
+MODEL_NAME=your-model-name
 
-# DeepSeek API配置
-DEEPSEEK_API_KEY=your_key_here
-DEEPSEEK_BASE_URL=https://api.deepseek.com/v1
-DEEPSEEK_MODEL=deepseek-chat
+# API 通用设置
+MAX_TOKENS=4096
+TEMPERATURE=0.7
 
-# SiliconFlow API配置
-SILICONFLOW_API_KEY=your_key_here
-SILICONFLOW_BASE_URL=https://api.siliconflow.com/v1
-SILICONFLOW_MODEL=silicon-chat
+# 服务器设置
+PORT=8000
+HOST=0.0.0.0
 ```
-硅基流动API获取地址：https://cloud.siliconflow.cn/i/k6Zl8Oeo
+
+您可以根据您使用的AI服务提供商填入相应的API基础URL、API密钥和模型名称。
 
 ## 项目结构
 
@@ -97,10 +98,7 @@ chapterAI/
 
 ## 常见问题
 
-1. **Q: 如何切换API提供商？**  
-   A: 在`.env`文件中修改`API_PROVIDER`的值。
-
-2. **Q: 启动时报端口占用错误？**  
+1. **Q: 启动时报端口占用错误？**  
    A: 确保8000和8001端口未被其他程序占用。可以在命令提示符中运行：
    ```bash
    netstat -ano | findstr :8000
@@ -108,10 +106,10 @@ chapterAI/
    ```
    然后使用任务管理器结束占用端口的进程。
 
-3. **Q: 如何查看服务日志？**  
+2. **Q: 如何查看服务日志？**  
    A: 服务启动时会在命令提示符窗口显示日志信息。
 
-4. **Q: Python未安装或版本不正确？**  
+3. **Q: Python未安装或版本不正确？**  
    A: 从[Python官网](https://www.python.org/downloads/)下载并安装Python 3.8或更高版本。安装时请勾选"Add Python to PATH"选项。
 
 
