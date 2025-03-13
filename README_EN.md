@@ -40,7 +40,8 @@ The frontend interface of this project is based on the [ePubViewer](https://gith
 3. Configure settings:
    ```bash
    cd api
-   # Edit .env file with your API key
+   cp .env.example .env  # Copy the environment template
+   # Edit the .env file with your configuration
    ```
 
 ## Usage
@@ -57,20 +58,26 @@ In the `api/.env` file, you can configure the following options:
 
 ```ini
 # API General Configuration
-API_BASE_URL=https://your-api-base-url.com/
-API_KEY=your-api-key-here
-MODEL_NAME=your-model-name
+API_BASE_URL=your_api_base_url_here    # Base URL for API service
+API_KEY=your_api_key_here              # Your API key
+MODEL_NAME=your_model_name_here        # Model name to use
 
 # API General Settings
-MAX_TOKENS=4096
-TEMPERATURE=0.7
+MAX_TOKENS=4096                        # Maximum tokens
+TEMPERATURE=0.7                        # Text generation randomness
 
 # Server Settings
-PORT=8000
-HOST=0.0.0.0
+PORT=8000                             # Server port
+HOST=0.0.0.0                          # Server host address
+
+# Development Settings
+DEBUG=True                            # Debug mode
 ```
 
-Fill in the corresponding API base URL, API key, and model name according to your AI service provider.
+Please note:
+- The `.env` file contains sensitive information and will not be committed to the Git repository
+- You need to create your own `.env` file from `.env.example` during initial setup
+- Keep your API key secure and never share it with others
 
 ## Project Structure
 

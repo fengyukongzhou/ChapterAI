@@ -40,7 +40,8 @@ ChapterAI 是一个epub文件分章节分析工具，它能够帮助用户快速
 3. 编辑配置：
    ```bash
    cd api
-   # 编辑.env文件，填入您的API密钥
+   cp .env.example .env  # 复制环境变量模板
+   # 使用文本编辑器打开.env文件，填入您的配置信息
    ```
 
 ## 使用方法
@@ -57,20 +58,26 @@ ChapterAI 是一个epub文件分章节分析工具，它能够帮助用户快速
 
 ```ini
 # API 通用配置
-API_BASE_URL=https://your-api-base-url.com/
-API_KEY=your-api-key-here
-MODEL_NAME=your-model-name
+API_BASE_URL=your_api_base_url_here    # API服务的基础URL
+API_KEY=your_api_key_here              # 您的API密钥
+MODEL_NAME=your_model_name_here        # 使用的模型名称
 
 # API 通用设置
-MAX_TOKENS=4096
-TEMPERATURE=0.7
+MAX_TOKENS=4096                        # 最大令牌数
+TEMPERATURE=0.7                        # 生成文本的随机性
 
 # 服务器设置
-PORT=8000
-HOST=0.0.0.0
+PORT=8000                             # 服务器端口
+HOST=0.0.0.0                          # 服务器主机地址
+
+# 开发设置
+DEBUG=True                            # 调试模式
 ```
 
-您可以根据您使用的AI服务提供商填入相应的API基础URL、API密钥和模型名称。
+请注意：
+- `.env` 文件包含敏感信息，不会被提交到Git仓库
+- 首次设置时需要从 `.env.example` 创建您自己的 `.env` 文件
+- 请妥善保管您的API密钥，不要分享给他人
 
 ## 项目结构
 
