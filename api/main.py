@@ -103,11 +103,12 @@ async def summarize_chapter(chapter: ChapterContent):
 4. 状态图(stateDiagram-v2): 用于表示状态转换或并行处理
 
 注意：
-1. 使用中文描述节点和关系，需要使用引号作为标点符号时，使用中文引号，比如：拥有“隔绝的本能”
+1. 使用中文描述节点和关系
 2. 图形逻辑清晰，层次分明
 3. 避免过于复杂的图形结构
 4. 确保每个图形都有明确的起点和终点
-5. 必须使用三个反引号加 mermaid 标记来包裹图形代码"""
+5. 必须使用三个反引号加 mermaid 标记来包裹图形代码
+6. 确保所有的标点符号都使用中文标点，例如：使用“”代替""，使用，代替,，使用；代替;，比如：拥有“隔绝的本能”、A[规训社会: “不允许”, “应当”]"""
 
         response = current_client.chat.completions.create(
             model=current_model,
