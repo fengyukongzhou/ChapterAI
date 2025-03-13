@@ -1031,50 +1031,11 @@ async function summarizeChapter() {
             }
         });
         
-        // 由于 marked 的 highlight 函数现在是异步的，我们需要等待渲染完成
-        const renderMarkdown = async (markdown) => {
-            // 找出所有的 mermaid 代码块
-            const mermaidBlocks = [];
-            const processedMarkdown = markdown.replace(/```mermaid([\s\S]*?)```/g, (match, code) => {
-                const id = 'mermaid-' + Math.random().toString(36).substr(2, 9);
-                mermaidBlocks.push({ id, code: code.trim() });
-                return `<div class="mermaid-placeholder" data-id="${id}"></div>`;
-            });
-
-            // 先渲染非 mermaid 的内容
-            let renderedContent = marked.parse(processedMarkdown);
-
-            // 渲染所有 mermaid 图表
-            for (const block of mermaidBlocks) {
-                try {
-                    const { svg } = await mermaid.render(block.id, block.code);
-                    renderedContent = renderedContent.replace(
-                        `<div class="mermaid-placeholder" data-id="${block.id}"></div>`,
-                        `<div class="mermaid-svg">${svg}</div>`
-                    );
-                } catch (err) {
-                    console.error('Mermaid rendering error:', err);
-                    renderedContent = renderedContent.replace(
-                        `<div class="mermaid-placeholder" data-id="${block.id}"></div>`,
-                        `<pre>${block.code}</pre>`
-                    );
-                }
-            }
-
-            return renderedContent;
-        };
-
-        // 渲染内容
-        const renderedContent = await renderMarkdown(data.summary);
+        // 保存原始markdown内容
+        summaryText.setAttribute('data-markdown', data.summary);
         
-        // 清空之前的内容并显示新内容
-        summaryText.innerHTML = renderedContent;
-        
-        // 确保滚动到顶部
-        summaryText.scrollTop = 0;
-        
-        // 显示内容区域并隐藏占位符
-        summaryText.style.display = 'block';
+        // 渲染markdown内容
+        summaryText.innerHTML = marked.parse(data.summary);
         placeholder.style.display = 'none';
     } catch (error) {
         console.error('Error:', error);
@@ -1092,7 +1053,51 @@ document.addEventListener('DOMContentLoaded', function() {
     if (summaryButton) {
         summaryButton.addEventListener('click', summarizeChapter);
     }
+    
+    // 添加复制按钮点击事件监听
+    const copyButton = document.querySelector('.copy-summary-button');
+    if (copyButton) {
+        copyButton.addEventListener('click', copySummaryContent);
+    }
 });
+
+// 复制AI总结内容的函数
+function copySummaryContent() {
+    const summaryText = document.querySelector('.summary-text');
+    const placeholder = document.querySelector('.summary-placeholder');
+    const copyButton = document.querySelector('.copy-summary-button');
+    
+    // 检查是否有内容可复制
+    if (placeholder.style.display !== 'none' || !summaryText.innerHTML.trim()) {
+        // 如果没有内容，禁用按钮并提示
+        copyButton.disabled = true;
+        setTimeout(() => {
+            copyButton.disabled = false;
+        }, 2000);
+        return;
+    }
+    
+    try {
+        // 获取原始的markdown内容
+        const markdownContent = summaryText.getAttribute('data-markdown') || summaryText.textContent;
+        
+        // 复制到剪贴板
+        navigator.clipboard.writeText(markdownContent).then(() => {
+            // 复制成功，显示临时提示
+            const originalIcon = copyButton.innerHTML;
+            copyButton.innerHTML = '<i class="icon material-icons-outlined">check</i>';
+            copyButton.style.background = '#4CAF50';
+            
+            // 2秒后恢复原样
+            setTimeout(() => {
+                copyButton.innerHTML = originalIcon;
+                copyButton.style.background = '';
+            }, 2000);
+        });
+    } catch (err) {
+        console.error('复制失败:', err);
+    }
+}
 
 // 修改显示 AI 总结的函数
 App.prototype.displayAISummary = function(summary) {
@@ -1100,11 +1105,14 @@ App.prototype.displayAISummary = function(summary) {
     const placeholder = this.qs(".summary-placeholder");
     
     if (summary) {
+        // 保存原始markdown内容
+        summaryText.setAttribute('data-markdown', summary);
         // 使用 marked 渲染 Markdown
         summaryText.innerHTML = marked.parse(summary);
         placeholder.style.display = "none";
     } else {
         summaryText.innerHTML = "";
+        summaryText.removeAttribute('data-markdown');
         placeholder.style.display = "block";
     }
 };

@@ -1,0 +1,66 @@
+---
+description: 
+globs: 
+alwaysApply: false
+---
+
+# Your rule content
+
+- You can @ files here
+- You can use markdown but dont have to
+
+## 项目基本信息
+1. 项目名称：ChapterAI - epub章节分析助手
+2. 主要功能：epub文件分章节分析工具，用于快速理解和提炼文章核心内容
+3. 开源协议：MIT许可证
+
+## 技术要求
+1. 系统环境：
+   - Windows 10或更高版本
+   - Python 3.8或更高版本
+   - 推荐使用Chrome或Edge浏览器
+
+2. 端口要求：
+   - 需要8000和8001端口可用
+   - 运行前需确保这些端口未被占用
+
+## API集成规则
+1. 支持两种AI模型：
+   - DeepSeek API
+   - SiliconFlow API
+2. API配置要求：
+   - 必须在`.env`文件中配置相应的API密钥
+   - 可以通过环境变量切换API提供商
+
+## 项目结构规范
+```
+chapterAI/
+├── api/                 # 后端代码
+├── frontend/           # 前端静态文件
+├── start.bat          # 启动脚本
+└── requirements.txt   # 项目依赖
+```
+
+## 开发规范
+1. 前端基于ePubViewer项目进行修改和适配
+2. 需要保持原有的项目结构
+3. 代码贡献需遵循MIT许可证规范
+
+## 运行规则
+1. 服务启动方式：
+   - 使用 [start.bat](mdc:start.bat) 启动
+   - 服务默认运行在http://localhost:8000
+2. 日志记录：
+   - 服务运行日志会在命令提示符窗口显示
+
+## 依赖管理
+1. 所有Python依赖都需要列在 [requirements.txt](mdc:requirements.txt) 中
+2. 安装依赖时使用pip install -r requirements.txt
+
+## 使用流程规范
+1. 启动服务
+2. 打开本地epub文件
+3. 使用"AI总结"功能
+4. 等待分析完成查看结果
+
+这个项目的规则体系比较完整，涵盖了技术要求、配置规范、运行规则等多个方面，便于开发者理解和遵循。
