@@ -37,12 +37,7 @@ The frontend interface of this project is based on the [ePubViewer](https://gith
    pip install -r requirements.txt
    ```
 
-3. Configure settings:
-   ```bash
-   cd api
-   cp .env.example .env  # Copy the environment template
-   # Edit the .env file with your configuration
-   ```
+3. Edit Configuration: Create a new `.env` file and open it with a text editor. Copy the contents from `.env.example` and configure your API information.
 
 ## Usage
 

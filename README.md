@@ -37,12 +37,7 @@ ChapterAI 是一个epub文件分章节分析工具，它能够帮助用户快速
    pip install -r requirements.txt
    ```
 
-3. 编辑配置：
-   ```bash
-   cd api
-   cp .env.example .env  # 复制环境变量模板
-   # 使用文本编辑器打开.env文件，填入您的配置信息
-   ```
+3. 编辑配置：新建 `.env` 文件并使用文本编辑器打开，复制 `.env.example` 并配置你的API信息
 
 ## 使用方法
 
