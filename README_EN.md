@@ -16,7 +16,8 @@ The frontend interface of this project is based on the [ePubViewer](https://gith
 - 📊 Visual Display: Automatically generate mind maps and flowcharts
 - 🎯 Core Point Extraction: Accurately identify article highlights
 - 💡 Smart Summary: Generate structured content overview
-- 🔄 Universal API Support: Compatible with various AI service providers
+- 📋 Quick Copy: Support one-click copying of AI summary markdown text
+- 🔄 OpenAI Format API Support: Compatible with API services that follow OpenAI interface format
 
 ## System Requirements
 
