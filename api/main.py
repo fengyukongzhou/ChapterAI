@@ -5,10 +5,10 @@ from pydantic import BaseModel
 from openai import OpenAI
 from typing import Optional
 from config import (
-    DEEPSEEK_API_KEY, SILICONFLOW_API_KEY,
-    DEEPSEEK_BASE_URL, SILICONFLOW_BASE_URL,
-    DEEPSEEK_MODEL, SILICONFLOW_MODEL,
-    API_PROVIDER, ALLOWED_ORIGINS, 
+    API_BASE_URL,
+    API_KEY,
+    MODEL_NAME,
+    ALLOWED_ORIGINS, 
     MAX_TOKENS, TEMPERATURE
 )
 
@@ -49,19 +49,11 @@ async def options_route():
     )
 
 def get_ai_client():
-    """根据配置返回相应的AI客户端"""
-    if API_PROVIDER == "deepseek":
-        return OpenAI(
-            api_key=DEEPSEEK_API_KEY,
-            base_url=DEEPSEEK_BASE_URL
-        ), DEEPSEEK_MODEL
-    elif API_PROVIDER == "siliconflow":
-        return OpenAI(
-            api_key=SILICONFLOW_API_KEY,
-            base_url=SILICONFLOW_BASE_URL
-        ), SILICONFLOW_MODEL
-    else:
-        raise ValueError(f"不支持的API提供商: {API_PROVIDER}")
+    """返回AI客户端"""
+    return OpenAI(
+        api_key=API_KEY,
+        base_url=API_BASE_URL
+    ), MODEL_NAME
 
 # 获取AI客户端
 client, model = get_ai_client()
@@ -71,7 +63,7 @@ client, model = get_ai_client()
     500: {"model": ErrorResponse}
 })
 async def summarize_chapter(chapter: ChapterContent):
-    print(f"收到章节总结请求 (使用 {API_PROVIDER} API)")
+    print("收到章节总结请求")
     print(f"章节标题: {chapter.chapter_title}")
     print(f"章节内容长度: {len(chapter.content)}")
 
@@ -84,7 +76,7 @@ async def summarize_chapter(chapter: ChapterContent):
 
     try:
         chapter_title = f"《{chapter.chapter_title}》" if chapter.chapter_title else "本章"
-        print(f"正在调用 {API_PROVIDER} API 进行总结...")
+        print("正在调用 API 进行总结...")
         
         # 获取最新的客户端实例
         current_client, current_model = get_ai_client()
@@ -133,7 +125,7 @@ async def summarize_chapter(chapter: ChapterContent):
             max_tokens=MAX_TOKENS
         )
         
-        print(f"{API_PROVIDER} API 调用完成")
+        print("API 调用完成")
         
         return JSONResponse(
             content={"summary": response.choices[0].message.content},
@@ -150,7 +142,7 @@ async def summarize_chapter(chapter: ChapterContent):
         status_code = status.HTTP_500_INTERNAL_SERVER_ERROR
         
         if "Insufficient Balance" in error_msg:
-            error_msg = f"{API_PROVIDER} API 服务余额不足，请联系管理员充值"
+            error_msg = "API 服务余额不足，请联系管理员充值"
             error_type = "INSUFFICIENT_BALANCE"
             status_code = status.HTTP_402_PAYMENT_REQUIRED
             

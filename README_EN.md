@@ -1,7 +1,8 @@
 # ChapterAI - EPUB Chapter Analysis Assistant
 
 ChapterAI is an EPUB file chapter analysis tool that helps users quickly understand and extract the core content of articles. Through advanced AI technology, ChapterAI can automatically analyze article structure, extract key points, and generate clear visual charts.
-![image](https://github.com/user-attachments/assets/4b4c47e7-0032-437e-bdde-cca36703e94c)
+
+![image](screenshot.png)
 
 [中文版本](README.md)
 
