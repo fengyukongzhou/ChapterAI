@@ -8,7 +8,10 @@ ChapterAI is an EPUB file chapter analysis tool that helps users quickly underst
 
 ## Project Credits
 
-The frontend interface of this project is based on the [ePubViewer](https://github.com/pgaskin/ePubViewer) project with modifications and adaptations. Thanks to the original author for their open-source contribution.
+Special thanks to the following open-source projects:
+- [ePubViewer](https://github.com/pgaskin/ePubViewer) - Provided an excellent frontend interface foundation
+- [3mintop](https://3min.top/) - Inspired the page layout
+- [hikari0511/chapterAI](https://github.com/hikari0511/chapterAI) - This project is based on improvements and refactoring of this project 
 
 ## Features
 
@@ -110,10 +113,3 @@ chapterAI/
 ## License
 
 This project is licensed under the MIT License - see the [LICENSE](LICENSE) file for details.
-
-## Acknowledgments
-
-Special thanks to the following open-source projects:
-- [ePubViewer](https://github.com/pgaskin/ePubViewer) - Provided an excellent frontend interface foundation
-- [3mintop](https://3min.top/) - Inspired the page layout
-- [hikari0511/chapterAI](https://github.com/hikari0511/chapterAI) - This project is based on improvements and refactoring of this project 

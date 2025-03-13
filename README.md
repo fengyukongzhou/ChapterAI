@@ -8,7 +8,10 @@ ChapterAI 是一个epub文件分章节分析工具，它能够帮助用户快速
 
 ## 项目引用
 
-本项目的前端界面基于 [ePubViewer](https://github.com/pgaskin/ePubViewer) 项目进行修改和适配。感谢原作者的开源贡献。
+特别感谢以下开源项目：
+- [ePubViewer](https://github.com/pgaskin/ePubViewer) - 提供了优秀的前端界面基础
+- [3mintop](https://3min.top/) - 为页面布局提供了灵感
+- [hikari0511/chapterAI](https://github.com/hikari0511/chapterAI) - 本项目基于此项目进行改进和重构
 
 ## 功能特点
 
@@ -111,10 +114,3 @@ chapterAI/
 ## 许可证
 
 本项目采用 MIT 许可证 - 详见 [LICENSE](LICENSE) 文件
-
-## 致谢
-
-特别感谢以下开源项目：
-- [ePubViewer](https://github.com/pgaskin/ePubViewer) - 提供了优秀的前端界面基础
-- [3mintop](https://3min.top/) - 为页面布局提供了灵感
-- [hikari0511/chapterAI](https://github.com/hikari0511/chapterAI) - 本项目基于此项目进行改进和重构
