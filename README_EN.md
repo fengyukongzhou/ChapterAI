@@ -1,10 +1,12 @@
 # ChapterAI - EPUB Chapter Analysis Assistant
 
+[中文版本](README.md)
+
 ChapterAI is an EPUB file chapter analysis tool that helps users quickly understand and extract the core content of articles. Through advanced AI technology, ChapterAI can automatically analyze article structure, extract key points, and generate clear visual charts.
 
 ![image](screenshot.png)
 
-[中文版本](README.md)
+[Preview](https://fengyukongzhou.github.io/2025/03/13/the-burnout-society/)
 
 ## Project Credits
 

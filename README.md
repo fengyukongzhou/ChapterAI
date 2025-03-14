@@ -1,10 +1,12 @@
 # ChapterAI - epub章节分析助手
 
+[English Version](README_EN.md)
+
 ChapterAI 是一个epub文件分章节分析工具，它能够帮助用户快速理解和提炼文章的核心内容。通过先进的AI技术，ChapterAI可以自动分析文章结构，提取关键观点，并生成清晰的可视化图表。
 
 ![image](screenshot.png)
 
-[English Version](README_EN.md)
+[效果预览](https://fengyukongzhou.github.io/2025/03/13/the-burnout-society/)
 
 ## 项目引用
 
